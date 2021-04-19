@@ -31,6 +31,8 @@
 
         <!-- card visualizzazione risposte -->
         <main>
+
+            <!-- FILMS -->
             <div class="card"  v-for="film in films">
                 <!-- titolo -->
                 <h2>{{getTitle(film)}}</h2>
@@ -43,6 +45,21 @@
                 </div>
                 <!-- voto -->
                 <div>{{getVote(film)}}</div>
+            </div>
+            
+            <!-- SERIE TV -->
+            <div class="card"  v-for="serie in series">
+                <!-- titolo -->
+                <h2>{{getName(serie)}}</h2>
+                <!-- titolo originale -->
+                <div>{{getOriginalName(serie)}}</div>
+                <!-- lingue -->
+                <div>
+                    <img class="flag-icon" :src="'./img/' + getFlag(serie) + '.jpg'" alt="">
+                    <span>{{getOriginalLanguage(serie)}}</span>
+                </div>
+                <!-- voto -->
+                <div>{{getVote(serie)}}</div>
             </div>
             
 
