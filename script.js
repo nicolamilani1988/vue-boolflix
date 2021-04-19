@@ -82,17 +82,28 @@ function init(){
 
             getFlag: function(value){        
                 const language = this.getOriginalLanguage(value);
+                
                 if(this.flags.includes(language)){
-                    return language;
+                    let imgPath = "./img/" + language + '.jpg';
+                    return imgPath;
                 } else{
-                    return 'default';
+                    let imgPath = './img/default.jpg';
+                    return imgPath;
                 }
             },
 
             getPoster(val){
-                if(val != ''){
-                    return val['poster_path'];
+                const poster = val['poster_path'];
+                const posterPath = 'https://image.tmdb.org/t/p/w342';
+                if(poster == null){
+                    return './img/notavailable.jpg';
+                } else {
+                    if(val != ''){
+                        const posterLink = posterPath+poster;
+                        return posterLink;;
+                    }
                 }
+                
             },
 
             fillStar: function(val,index){

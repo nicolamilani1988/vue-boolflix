@@ -34,14 +34,14 @@
 
             <ul>
                 <!-- FILMS -->
-                <li class="card"  v-for="film in films">
+                <li class="card" v-for="film in films">
                     <!-- titolo -->
                     <h2>{{getTitle(film)}}</h2>
                     <!-- titolo originale -->
                     <div>{{getOriginalTitle(film)}}</div>
                     <!-- lingue -->
                     <div>
-                        <img class="flag-icon" :src="'./img/' + getFlag(film) + '.jpg'" alt="">
+                        <img class="flag-icon" :src="getFlag(film)" alt="">
                         <span>{{getOriginalLanguage(film)}}</span>
                     </div>
                     <!-- voto -->
@@ -52,7 +52,7 @@
 
                     <!-- sfondo -->
                     <div>
-                        <img :src="getPoster(film)" alt="">
+                        <img :class="film['poster_path'] == null ? 'poster-size' : ''" :src="getPoster(film)" alt="">
                     </div>
 
                 </li>
@@ -65,21 +65,17 @@
                     <div>{{getOriginalName(serie)}}</div>
                     <!-- lingue -->
                     <div>
-                        <img class="flag-icon" :src="'./img/' + getFlag(serie) + '.jpg'" alt="">
+                        <img class="flag-icon" :src="getFlag(serie)" alt="">
                         <span>{{getOriginalLanguage(serie)}}</span>
                     </div>
                     <!-- voto -->
                     <div>{{getVote(serie)}}</div>
                     <div class="star-rating">
                         <i :class="fillStar(serie,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
-                        <!-- <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>  -->
                     </div>
                     <!-- sfondo -->
                     <div>
-                         <img :class="serie['backdrop_path'] == null ? 'poster-size' : ''" :src="serie['backdrop_path'] == null ? './img/notavailable.jpg': 'https://image.tmdb.org/t/p/w342' + getPoster(serie)" alt="">
+                        <img :class="serie['poster_path'] == null ? 'poster-size' : ''" :src="getPoster(serie)" alt="">
                     </div>
 
                 </li>
@@ -89,9 +85,6 @@
         </main>
 
     </div>
-
-        
-
 
     
 </body>
