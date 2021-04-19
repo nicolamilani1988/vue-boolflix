@@ -1,91 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BoolFlix</title>
-            <!-- font awesome --> 
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-            <!-- jquery -->
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <!-- VueJS -->
-            <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-            <!-- VueAxios -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-            <!-- my css -->
-            <link rel="stylesheet" href="style.css">
-            <!-- my script -->
-            <script src="script.js"></script>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BoolFlix</title>
+                <!-- font awesome --> 
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+                <!-- google font -->
+                <link rel="preconnect" href="https://fonts.gstatic.com">
+                <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+                <link rel="preconnect" href="https://fonts.gstatic.com">
+                <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+                <!-- jquery -->
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <!-- VueJS -->
+                <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+                <!-- VueAxios -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+                <!-- my css -->
+                <link rel="stylesheet" href="style.css">
+                <!-- my script -->
+                <script src="script.js"></script>
+    </head>
+    <body>
 
-    <div class="container" id="app">
+        <div class="container" id="app">
 
-        <!-- logo + searchbar -->
-        <header>
-            <h1>Boolflix</h1>
-            <input v-model="searchedFilm" type="text" placeholder="Inserisci titolo film">
-            <button @click="getFilms">Cerca film</button>
-        </header>
+            <!-- logo + searchbar -->
+            <header>
+                <div>
+                    <img src="./img/logo.png" alt="logo-pic">
+                    <h1>Boolflix</h1>
+                </div>
+                <div>
+                    <i class="fas fa-search"></i>
+                    <input v-model="searchedFilm" type="text" placeholder="Inserisci titolo film">
+                    <button @click="getFilms">Cerca film</button>
+                </div>             
+            </header>
 
-        <!-- card visualizzazione risposte -->
-        <main>
+            <!-- card visualizzazione risposte -->
+            <main>
 
-            <ul>
-                <!-- FILMS -->
-                <li class="card" v-for="film in films">
-                    <!-- titolo -->
-                    <h2>{{getTitle(film)}}</h2>
-                    <!-- titolo originale -->
-                    <div>{{getOriginalTitle(film)}}</div>
-                    <!-- lingue -->
-                    <div>
-                        <img class="flag-icon" :src="getFlag(film)" alt="">
-                        <span>{{getOriginalLanguage(film)}}</span>
-                    </div>
-                    <!-- voto -->
-                    <div>{{getVote(film)}}</div>
-                    <div class="star-rating">
-                        <i :class="fillStar(film,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
-                    </div>
+                <ul>
+                    <!-- FILMS -->
+                    <li class="card" v-for="film in films">
+                        <!-- titolo -->
+                        <h2>Titolo:{{getTitle(film)}}</h2>
+                        <!-- titolo originale -->
+                        <div v-if="film['title'] != film['original_title']">Titolo originale: {{getOriginalTitle(film)}}</div>
+                        <!-- lingue -->
+                        <div>
+                            <img class="flag-icon" :src="getFlag(film)" alt="">
+                            <span>{{getOriginalLanguage(film)}}</span>
+                        </div>
+                        <!-- voto -->
+                        <div>{{getVote(film)}}</div>
+                        <div class="star-rating">
+                            <i :class="fillStar(film,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
+                        </div>
 
-                    <!-- sfondo -->
-                    <div>
-                        <img :class="film['poster_path'] == null ? 'poster-size' : ''" :src="getPoster(film)" alt="">
-                    </div>
+                        <!-- sfondo -->
+                        <div>
+                            <img :class="film['poster_path'] == null ? 'poster-size' : ''" :src="getPoster(film)" alt="">
+                        </div>
 
-                </li>
+                    </li>
 
-                <!-- SERIE TV -->
-                <li class="card"  v-for="serie in series">
-                    <!-- titolo -->
-                    <h2>{{getName(serie)}}</h2>
-                    <!-- titolo originale -->
-                    <div>{{getOriginalName(serie)}}</div>
-                    <!-- lingue -->
-                    <div>
-                        <img class="flag-icon" :src="getFlag(serie)" alt="">
-                        <span>{{getOriginalLanguage(serie)}}</span>
-                    </div>
-                    <!-- voto -->
-                    <div>{{getVote(serie)}}</div>
-                    <div class="star-rating">
-                        <i :class="fillStar(serie,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
-                    </div>
-                    <!-- sfondo -->
-                    <div>
-                        <img :class="serie['poster_path'] == null ? 'poster-size' : ''" :src="getPoster(serie)" alt="">
-                    </div>
+                    <!-- SERIE TV -->
+                    <li class="card"  v-for="serie in series">
+                        <!-- titolo -->
+                        <h2>{{getName(serie)}}</h2>
+                        <!-- titolo originale -->
+                        <div v-if="serie['title'] != serie['original_title']">{{getOriginalName(serie)}}</div>
+                        <!-- lingue -->
+                        <div>
+                            <img class="flag-icon" :src="getFlag(serie)" alt="">
+                            <span>{{getOriginalLanguage(serie)}}</span>
+                        </div>
+                        <!-- voto -->
+                        <div>{{getVote(serie)}}</div>
+                        <div class="star-rating">
+                            <i :class="fillStar(serie,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
+                        </div>
+                        <!-- sfondo -->
+                        <div>
+                            <img :class="serie['poster_path'] == null ? 'poster-size' : ''" :src="getPoster(serie)" alt="">
+                        </div>
 
-                </li>
+                    </li>
 
-            </ul>
+                </ul>
 
-        </main>
+            </main>
 
-    </div>
+        </div>
 
-    
-</body>
+        
+    </body>
 </html>
