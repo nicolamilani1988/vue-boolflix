@@ -33,13 +33,16 @@
         <main>
             <div class="card"  v-for="film in films">
                 <!-- titolo -->
-                <h2>{{film | getTitle}}</h2>
+                <h2>{{getTitle(film)}}</h2>
                 <!-- titolo originale -->
-                <div>{{film | getOriginalTitle}}</div>
+                <div>{{getOriginalTitle(film)}}</div>
                 <!-- lingue -->
-                <div>{{film | getOriginalLanguage}}</div>
+                <div>
+                    <img class="flag-icon" :src="'./img/' + getFlag(film) + '.jpg'" alt="">
+                    <span>{{getOriginalLanguage(film)}}</span>
+                </div>
                 <!-- voto -->
-                <div>{{film | getVote}}</div>
+                <div>{{getVote(film)}}</div>
             </div>
             
 

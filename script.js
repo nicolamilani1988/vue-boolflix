@@ -4,6 +4,7 @@ function init(){
         data:{
             films: '',
             searchedFilm: '',
+            flags:['de','en','it'],
         },
         methods:{
             getFilms: function(){
@@ -23,9 +24,8 @@ function init(){
 
                 })
                 .catch(() => console.log('error'))
-            }
-        },
-        filters:{
+            },
+       
             getTitle: function(val){
                 if (val != ''){
                         return val['title'];                    
@@ -49,6 +49,15 @@ function init(){
                     return val['vote_average'];
                 }
             }, 
+
+            getFlag: function(film){        
+                const language = this.getOriginalLanguage(film);
+                if(this.flags.includes(language)){
+                    return language;
+                } else{
+                    return 'default';
+                }
+            },
         },
     })
 }
