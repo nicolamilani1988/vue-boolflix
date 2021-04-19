@@ -2,23 +2,24 @@ function init(){
     new Vue({
         el: '#app',
         data:{
-            film: '',
+            films: '',
+            searchedFilm: '',
         },
         methods:{
-            getFilm: function(){
+            getFilms: function(){
                 axios.get('https://api.themoviedb.org/3/search/movie',
                 {
                     params: {
                         api_key: '08129c0589bf0f473da03e334eb1d88a',
                         language: 'it',
-                        query: 'ritorno al futuro' // da sostituire col valore v-model dell'input
+                        query: this.searchedFilm // da sostituire col valore v-model dell'input
                     }
                 })
                 .then(data => {
 
-                    this.film = data['data']['results'];
-                    console.log(this.film);
-                    console.log(this.film[0]['title']);
+                    this.films = data['data']['results'];
+                    console.log(this.films);
+                    console.log(this.films[0]['title']);
 
                 })
                 .catch(() => console.log('error'))
@@ -27,25 +28,25 @@ function init(){
         filters:{
             getTitle: function(val){
                 if (val != ''){
-                    return val[0]['title'];
+                        return val['title'];                    
                 }           
             },
 
             getOriginalTitle: function(val){
                 if (val != ''){
-                    return val[0]['original_title'];
+                    return val['original_title'];
                 }
             },
 
             getOriginalLanguage: function(val){
                 if (val != ''){
-                    return val[0]['original_language'];
+                    return val['original_language'];
                 }
             },
 
             getVote: function(val){
                 if (val != ''){
-                    return val[0]['vote_average'];
+                    return val['vote_average'];
                 }
             }, 
         },

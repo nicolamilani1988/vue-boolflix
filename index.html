@@ -25,20 +25,23 @@
         <!-- logo + searchbar -->
         <header>
             <h1>Boolflix</h1>
-            <input type="text" placeholder="Inserisci titolo film">
-            <button @click="getFilm">Cerca film</button>
+            <input v-model="searchedFilm" type="text" placeholder="Inserisci titolo film">
+            <button @click="getFilms">Cerca film</button>
         </header>
 
         <!-- card visualizzazione risposte -->
         <main>
-            <!-- titolo -->
-            <h2>{{film | getTitle}}</h2>
-            <!-- titolo originale -->
-            <div>{{film | getOriginalTitle}}</div>
-            <!-- lingue -->
-            <div>{{film | getOriginalLanguage}}</div>
-            <!-- voto -->
-            <div>{{film | getVote}}</div>
+            <div class="card"  v-for="film in films">
+                <!-- titolo -->
+                <h2>{{film | getTitle}}</h2>
+                <!-- titolo originale -->
+                <div>{{film | getOriginalTitle}}</div>
+                <!-- lingue -->
+                <div>{{film | getOriginalLanguage}}</div>
+                <!-- voto -->
+                <div>{{film | getVote}}</div>
+            </div>
+            
 
         </main>
 
