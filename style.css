@@ -6,7 +6,7 @@
 }
 
 .container{
-    width: 80%;
+    width: 90%;
     margin: auto;
     padding: 20px;
     border: 1px solid gray;
@@ -65,9 +65,29 @@ main{
     font-family: 'Roboto', sans-serif;
 }
 
+main ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card{
+    border: 1px solid red;
+    width: calc(342px);
+    /* height: 513px; */
+}
+
+.card>div:first-child{
+    padding: 20px;
+}
+
+.card>div:first-child>div{
+    margin-bottom: 10px;
+}
+
 img.flag-icon{
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
 }
 
 .poster-size{

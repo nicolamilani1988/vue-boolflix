@@ -80,6 +80,12 @@ function init(){
                 }
             }, 
 
+            getOverview: function(val){
+                if (val != ''){
+                    return val['overview'];
+                }
+            },  
+
             getFlag: function(value){        
                 const language = this.getOriginalLanguage(value);
                 
