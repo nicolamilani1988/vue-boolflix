@@ -3,8 +3,16 @@ img.flag-icon{
     height: 50px;
 }
 
-.card{
-    width: 200px;
-    height: 300px;
-    border: 1px solid red;
+
+.poster-size{
+    width: 342px;
+    height: 513px;
+}
+
+.star-rating i{
+    color: lightgray;
+}
+
+i.fill-yellow{
+    color: orange;
 }

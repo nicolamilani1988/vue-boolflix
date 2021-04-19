@@ -93,6 +93,13 @@ function init(){
                 if(val != ''){
                     return val['poster_path'];
                 }
+            },
+
+            fillStar: function(val,index){
+                const vote = Math.ceil(val['vote_average']);
+                if(vote > (index*2)){
+                    return 'fill-yellow';
+                }
             }
         },
     })

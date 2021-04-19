@@ -46,6 +46,10 @@
                     </div>
                     <!-- voto -->
                     <div>{{getVote(film)}}</div>
+                    <div class="star-rating">
+                        <i :class="fillStar(film,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
+                    </div>
+
                     <!-- sfondo -->
                     <div>
                         <img :src="getPoster(film)" alt="">
@@ -66,9 +70,16 @@
                     </div>
                     <!-- voto -->
                     <div>{{getVote(serie)}}</div>
+                    <div class="star-rating">
+                        <i :class="fillStar(serie,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
+                        <!-- <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>  -->
+                    </div>
                     <!-- sfondo -->
                     <div>
-                         <img :src="serie['backdrop_path'] == null ? './img/notavailable.jpg': 'https://image.tmdb.org/t/p/w342' + getPoster(serie)" alt="">
+                         <img :class="serie['backdrop_path'] == null ? 'poster-size' : ''" :src="serie['backdrop_path'] == null ? './img/notavailable.jpg': 'https://image.tmdb.org/t/p/w342' + getPoster(serie)" alt="">
                     </div>
 
                 </li>
