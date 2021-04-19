@@ -19,6 +19,34 @@
             <script src="script.js"></script>
 </head>
 <body>
+
+    <div class="container" id="app">
+
+        <!-- logo + searchbar -->
+        <header>
+            <h1>Boolflix</h1>
+            <input type="text" placeholder="Inserisci titolo film">
+            <button @click="getFilm">Cerca film</button>
+        </header>
+
+        <!-- card visualizzazione risposte -->
+        <main>
+            <!-- titolo -->
+            <h2>{{film | getTitle}}</h2>
+            <!-- titolo originale -->
+            <div>{{film | getOriginalTitle}}</div>
+            <!-- lingue -->
+            <div>{{film | getOriginalLanguage}}</div>
+            <!-- voto -->
+            <div>{{film | getVote}}</div>
+
+        </main>
+
+    </div>
+
+        
+
+
     
 </body>
 </html>
