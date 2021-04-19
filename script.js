@@ -88,6 +88,12 @@ function init(){
                     return 'default';
                 }
             },
+
+            getPoster(val){
+                if(val != ''){
+                    return val['poster_path'];
+                }
+            }
         },
     })
 }
