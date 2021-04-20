@@ -10,6 +10,7 @@
     margin: auto;
     padding: 20px 0;
     border: 1px solid gray;
+    background-color: black;
 }
 
 ul li{
@@ -22,10 +23,9 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color:black;
-    padding: 10px;
+    padding: 10px 20px;
     font-family: 'Bebas Neue', cursive;
-    margin: 0 20px;
-
+    border-bottom: 1px solid white;
 }
 
 header>div:first-child{
@@ -72,11 +72,19 @@ main ul {
 }
 
 .card{
-    border: 1px solid #E50914;
     width: calc(25% - 40px);
     height: 500px;
     margin: 20px;
     position: relative;
+    background-color: white;
+}
+
+.card.film{
+    border: 2px solid white;
+}
+
+.card.serie{
+    border: 2px solid #E50914;
 }
 /* parte descrizione card */
 .description{

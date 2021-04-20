@@ -6,7 +6,6 @@ function init(){
             series: '',
             searchedFilm: '',
             flags:['de','en','it'],
-            isVisible: false,
         },
         methods:{
             getFilms: function(){
@@ -44,6 +43,15 @@ function init(){
                 }))
                 .catch(() => console.log('error'))
             },
+
+            isFlaggable: function(value){
+                const language = value['original_language'];
+                if(this.flags.includes(language)){
+                    return true;
+                } else{
+                    return false;
+                }
+            },
        
             getFlag: function(value){        
                 const language = value['original_language'];
@@ -51,10 +59,7 @@ function init(){
                 if(this.flags.includes(language)){
                     let imgPath = "./img/" + language + '.jpg';
                     return imgPath;
-                } else{
-                    let imgPath = './img/default.jpg';
-                    return imgPath;
-                }
+                } 
             },
 
             getPoster(val){

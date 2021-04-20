@@ -46,7 +46,7 @@
                 <!-- FILMS -->
                 <ul>
                     
-                    <li class="card" v-for="film in films">
+                    <li class="card film" v-for="film in films">
                         <!-- parte scritta -->
                         <div class="description">
                             <!-- titolo -->
@@ -62,8 +62,8 @@
                             <!-- lingue -->
                             <div>
                                 <strong>Lingua originale: </strong>
-                                <span>{{film['original_language']}}</span>
-                                <img class="flag-icon" :src="getFlag(film)" alt="">
+                                <span v-if="!isFlaggable(film)">{{film['original_language']}}</span>
+                                <img v-else class="flag-icon" :src="getFlag(film)" alt="">
                             </div>
                             <!-- voto -->
                             <!-- <div>{{getVote(film)}}</div> -->
@@ -90,7 +90,7 @@
                 <!-- SERIE TV -->
                 <ul>
 
-                    <li class="card"  v-for="serie in series">
+                    <li class="card serie"  v-for="serie in series">
                         <!-- parte scritta -->
                         <div class="description">
                             <!-- titolo -->
@@ -106,8 +106,8 @@
                             <!-- lingue -->
                             <div>
                                 <strong>Lingua originale: </strong>
-                                <span>{{serie['original_language']}}</span>
-                                <img class="flag-icon" :src="getFlag(serie)" alt="">
+                                <span v-if="!isFlaggable(serie)">{{serie['original_language']}}</span>
+                                <img v-else class="flag-icon" :src="getFlag(serie)" alt="">
                             </div>
                             <!-- voto -->
                             <!-- <div>{{getVote(serie)}}</div> -->
