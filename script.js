@@ -6,6 +6,7 @@ function init(){
             series: '',
             searchedFilm: '',
             flags:['de','en','it'],
+            isVisible: false,
         },
         methods:{
             getFilms: function(){

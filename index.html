@@ -43,11 +43,12 @@
             <!-- card visualizzazione risposte -->
             <main>
 
+                <!-- FILMS -->
                 <ul>
-                    <!-- FILMS -->
+                    
                     <li class="card" v-for="film in films">
                         <!-- parte scritta -->
-                        <div>
+                        <div class="description">
                             <!-- titolo -->
                             <div>
                                 <strong>Titolo: </strong>
@@ -78,16 +79,20 @@
                         </div>
 
                         <!-- sfondo -->
-                        <div>
-                            <img :class="film['poster_path'] == null ? 'poster-size' : ''" :src="getPoster(film)" alt="">
+                        <div class="poster">
+                            <img :src="getPoster(film)" alt="">
                         </div>
 
                     </li>
+                
+                </ul>
+                
+                <!-- SERIE TV -->
+                <ul>
 
-                    <!-- SERIE TV -->
                     <li class="card"  v-for="serie in series">
                         <!-- parte scritta -->
-                        <div>
+                        <div class="description">
                             <!-- titolo -->
                             <div>
                                 <strong>Titolo: </strong>
@@ -118,8 +123,8 @@
                         </div>
                         
                         <!-- sfondo -->
-                        <div>
-                            <img :class="serie['poster_path'] == null ? 'poster-size' : ''" :src="getPoster(serie)" alt="">
+                        <div class="poster">
+                            <img :src="getPoster(serie)" alt="">
                         </div>
 
                     </li>
