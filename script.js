@@ -16,6 +16,11 @@ function init(){
                 const api_key = '08129c0589bf0f473da03e334eb1d88a';
                 const query = this.searchedFilm;
                 const language = 'it';
+                this.filmsId= [],
+                this.seriesId= [],
+                this.filmCast = [],
+                this.serieCast = [],
+
 
                 axios.all([
                     axios.get('https://api.themoviedb.org/3/search/movie',
