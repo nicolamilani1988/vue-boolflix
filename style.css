@@ -8,7 +8,7 @@
 .container{
     width: 90%;
     margin: auto;
-    padding: 20px;
+    padding: 20px 0;
     border: 1px solid gray;
 }
 
@@ -24,6 +24,7 @@ header {
     background-color:black;
     padding: 10px;
     font-family: 'Bebas Neue', cursive;
+    margin: 0 20px;
 
 }
 
@@ -68,14 +69,13 @@ main{
 main ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .card{
     border: 1px solid #E50914;
-    width: 342px;
-    height: 513px;
-    margin-top: 20px;
+    width: calc(25% - 40px);
+    height: 500px;
+    margin: 20px;
     position: relative;
 }
 /* parte descrizione card */
