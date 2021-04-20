@@ -69,11 +69,17 @@ main{
     font-family: 'Roboto', sans-serif;
 }
 
+main h2{
+    font-family: 'Bebas Neue', cursive;
+    color: white;
+    margin: 20px 20px 0;
+}
+
 main ul {
     display: flex;
     overflow-x: auto;
-    
 }
+
 
 .card{
     width: calc(25% - 40px);

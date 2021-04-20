@@ -44,93 +44,100 @@
             <main>
 
                 <!-- FILMS -->
-                <ul>
+                <section v-if="films.length>0">
+                    <h2>FILM</h2>
+
+                    <ul>               
+                        <li class="card film" v-for="film in films">
+                            <!-- parte scritta -->
+                            <div class="description">
+                                <!-- titolo -->
+                                <div>
+                                    <strong>Titolo: </strong>
+                                    <span>{{film['original_title']}}</span>
+                                </div>
+                                <!-- titolo originale -->
+                                <div v-if="film['title'] != film['original_title']">
+                                    <strong>Titolo originale: </strong>
+                                    <span>{{film['original_title']}}</span>
+                                </div>
+                                <!-- lingue -->
+                                <div>
+                                    <strong>Lingua originale: </strong>
+                                    <span v-if="!isFlaggable(film)">{{film['original_language']}}</span>
+                                    <img v-else class="flag-icon" :src="getFlag(film)" alt="">
+                                </div>
+                                <!-- voto -->
+                                <!-- <div>{{getVote(film)}}</div> -->
+                                <div class="star-rating">
+                                    <strong>Voto: </strong>
+                                    <i :class="fillStar(film,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
+                                </div>
+                                <!-- overview -->
+                                <div v-if="film['overview'].length>0">
+                                    <strong>Overview: </strong>
+                                    <span>{{film['overview']}}</span>
+                                </div>
+                            </div>
+    
+                            <!-- sfondo -->
+                            <div class="poster">
+                                <img :src="getPoster(film)" alt="">
+                            </div>
+    
+                        </li>
+                    </ul>
                     
-                    <li class="card film" v-for="film in films">
-                        <!-- parte scritta -->
-                        <div class="description">
-                            <!-- titolo -->
-                            <div>
-                                <strong>Titolo: </strong>
-                                <span>{{film['original_title']}}</span>
-                            </div>
-                            <!-- titolo originale -->
-                            <div v-if="film['title'] != film['original_title']">
-                                <strong>Titolo originale: </strong>
-                                <span>{{film['original_title']}}</span>
-                            </div>
-                            <!-- lingue -->
-                            <div>
-                                <strong>Lingua originale: </strong>
-                                <span v-if="!isFlaggable(film)">{{film['original_language']}}</span>
-                                <img v-else class="flag-icon" :src="getFlag(film)" alt="">
-                            </div>
-                            <!-- voto -->
-                            <!-- <div>{{getVote(film)}}</div> -->
-                            <div class="star-rating">
-                                <strong>Voto: </strong>
-                                <i :class="fillStar(film,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
-                            </div>
-                            <!-- overview -->
-                            <div v-if="film['overview'].length>0">
-                                <strong>Overview: </strong>
-                                <span>{{film['overview']}}</span>
-                            </div>
-                        </div>
-
-                        <!-- sfondo -->
-                        <div class="poster">
-                            <img :src="getPoster(film)" alt="">
-                        </div>
-
-                    </li>
+                </section>
                 
-                </ul>
                 
                 <!-- SERIE TV -->
-                <ul>
+                <section v-if="series.length>0">
+                    <h2>SERIE TV</h2>
 
-                    <li class="card serie"  v-for="serie in series">
-                        <!-- parte scritta -->
-                        <div class="description">
-                            <!-- titolo -->
-                            <div>
-                                <strong>Titolo: </strong>
-                                <span>{{serie['name']}}</span>
+                    <ul>
+                        <li class="card serie"  v-for="serie in series">
+                            <!-- parte scritta -->
+                            <div class="description">
+                                <!-- titolo -->
+                                <div>
+                                    <strong>Titolo: </strong>
+                                    <span>{{serie['name']}}</span>
+                                </div>
+                                <!-- titolo originale -->
+                                <div v-if="serie['title'] != serie['original_title']">
+                                    <strong>Titolo originale: </strong>
+                                    <span>{{serie['original_name']}}</span>
+                                </div>
+                                <!-- lingue -->
+                                <div>
+                                    <strong>Lingua originale: </strong>
+                                    <span v-if="!isFlaggable(serie)">{{serie['original_language']}}</span>
+                                    <img v-else class="flag-icon" :src="getFlag(serie)" alt="">
+                                </div>
+                                <!-- voto -->
+                                <!-- <div>{{getVote(serie)}}</div> -->
+                                <div class="star-rating">
+                                    <strong>Voto: </strong>
+                                    <i :class="fillStar(serie,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
+                                </div>
+                                <!-- overview -->
+                                <div v-if="serie['overview'].length>0">
+                                    <strong>Overview: </strong>
+                                    <span>{{serie['overview']}}</span>
+                                </div>
                             </div>
-                            <!-- titolo originale -->
-                            <div v-if="serie['title'] != serie['original_title']">
-                                <strong>Titolo originale: </strong>
-                                <span>{{serie['original_name']}}</span>
+                            
+                            <!-- sfondo -->
+                            <div class="poster">
+                                <img :src="getPoster(serie)" alt="">
                             </div>
-                            <!-- lingue -->
-                            <div>
-                                <strong>Lingua originale: </strong>
-                                <span v-if="!isFlaggable(serie)">{{serie['original_language']}}</span>
-                                <img v-else class="flag-icon" :src="getFlag(serie)" alt="">
-                            </div>
-                            <!-- voto -->
-                            <!-- <div>{{getVote(serie)}}</div> -->
-                            <div class="star-rating">
-                                <strong>Voto: </strong>
-                                <i :class="fillStar(serie,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
-                            </div>
-                            <!-- overview -->
-                            <div v-if="serie['overview'].length>0">
-                                <strong>Overview: </strong>
-                                <span>{{serie['overview']}}</span>
-                            </div>
-                        </div>
-                        
-                        <!-- sfondo -->
-                        <div class="poster">
-                            <img :src="getPoster(serie)" alt="">
-                        </div>
+    
+                        </li>
+                    </ul>
 
-                    </li>
-
-                </ul>
-
+                </section>
+                
             </main>
 
         </div>
