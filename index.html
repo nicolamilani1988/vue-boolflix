@@ -51,17 +51,17 @@
                             <!-- titolo -->
                             <div>
                                 <strong>Titolo: </strong>
-                                <span>{{getTitle(film)}}</span>
+                                <span>{{film['original_title']}}</span>
                             </div>
                             <!-- titolo originale -->
                             <div v-if="film['title'] != film['original_title']">
                                 <strong>Titolo originale: </strong>
-                                <span>{{getOriginalTitle(film)}}</span>
+                                <span>{{film['original_title']}}</span>
                             </div>
                             <!-- lingue -->
                             <div>
                                 <strong>Lingua originale: </strong>
-                                <span>{{getOriginalLanguage(film)}}</span>
+                                <span>{{film['original_language']}}</span>
                                 <img class="flag-icon" :src="getFlag(film)" alt="">
                             </div>
                             <!-- voto -->
@@ -73,7 +73,7 @@
                             <!-- overview -->
                             <div v-if="film['overview'].length>0">
                                 <strong>Overview: </strong>
-                                <span>{{getOverview(film)}}</span>
+                                <span>{{film['overview']}}</span>
                             </div>
                         </div>
 
@@ -91,17 +91,17 @@
                             <!-- titolo -->
                             <div>
                                 <strong>Titolo: </strong>
-                                <span>{{getName(serie)}}</span>
+                                <span>{{serie['name']}}</span>
                             </div>
                             <!-- titolo originale -->
                             <div v-if="serie['title'] != serie['original_title']">
                                 <strong>Titolo originale: </strong>
-                                <span>{{getOriginalName(serie)}}</span>
+                                <span>{{serie['original_name']}}</span>
                             </div>
                             <!-- lingue -->
                             <div>
                                 <strong>Lingua originale: </strong>
-                                <span>{{getOriginalLanguage(serie)}}</span>
+                                <span>{{serie['original_language']}}</span>
                                 <img class="flag-icon" :src="getFlag(serie)" alt="">
                             </div>
                             <!-- voto -->
@@ -113,7 +113,7 @@
                             <!-- overview -->
                             <div v-if="serie['overview'].length>0">
                                 <strong>Overview: </strong>
-                                <span>{{getOverview(serie)}}</span>
+                                <span>{{serie['overview']}}</span>
                             </div>
                         </div>
                         

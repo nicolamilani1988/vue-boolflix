@@ -44,50 +44,8 @@ function init(){
                 .catch(() => console.log('error'))
             },
        
-            getTitle: function(val){
-                if (val != ''){
-                    return val['title'];
-                }                  
-            },
-
-            getName: function(val){
-                if (val != ''){
-                    return val['name'];
-                } 
-            },
-
-            getOriginalTitle: function(val){
-                if (val != ''){
-                    return val['original_title'];
-                }                        
-            },
-
-            getOriginalName: function(val){
-                if(val != ''){
-                    return val['original_name'];
-                }
-            },
-
-            getOriginalLanguage: function(val){
-                if (val != ''){
-                    return val['original_language'];
-                }
-            },
-
-            getVote: function(val){
-                if (val != ''){
-                    return val['vote_average'];
-                }
-            }, 
-
-            getOverview: function(val){
-                if (val != ''){
-                    return val['overview'];
-                }
-            },  
-
             getFlag: function(value){        
-                const language = this.getOriginalLanguage(value);
+                const language = value['original_language'];
                 
                 if(this.flags.includes(language)){
                     let imgPath = "./img/" + language + '.jpg';
