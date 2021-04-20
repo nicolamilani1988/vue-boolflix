@@ -48,7 +48,7 @@
                     <h2>FILM</h2>
 
                     <ul>               
-                        <li class="card film" v-for="film in films">
+                        <li class="card film" v-for="(film,index) in films">
                             <!-- parte scritta -->
                             <div class="description">
                                 <!-- titolo -->
@@ -78,6 +78,11 @@
                                     <strong>Overview: </strong>
                                     <span>{{film['overview']}}</span>
                                 </div>
+                                <!-- BONUS CAST -->
+                                <div>
+                                    <strong>Cast: </strong>
+                                    <span>{{filmCast[index]}}</span>
+                                </div>
                             </div>
     
                             <!-- sfondo -->
@@ -96,7 +101,7 @@
                     <h2>SERIE TV</h2>
 
                     <ul>
-                        <li class="card serie"  v-for="serie in series">
+                        <li class="card serie"  v-for="(serie,index) in series">
                             <!-- parte scritta -->
                             <div class="description">
                                 <!-- titolo -->
@@ -125,6 +130,11 @@
                                 <div v-if="serie['overview'].length>0">
                                     <strong>Overview: </strong>
                                     <span>{{serie['overview']}}</span>
+                                </div>
+                                <!-- BONUS CAST -->
+                                <div>
+                                    <strong>Cast: </strong>
+                                    <span>{{serieCast[index]}}</span>
                                 </div>
                             </div>
                             

@@ -8,8 +8,8 @@ function init(){
             flags:['de','en','it'],
             filmsId: [],
             seriesId: [],
-            filmCast: '',
-            serieCast: '',
+            filmCast: [],
+            serieCast: [],
         },
         methods:{
             getFilms: function(){
@@ -76,10 +76,11 @@ function init(){
                             }
                         })
                     .then(data =>{
-                        this.filmCast = data['data']['cast'][0]['name']; 
+                        const actor = data['data']['cast'][0]['name'];
+                        this.filmCast.push(actor); 
                         console.log("film num",i, "actor ",this.filmCast);
                     })
-                    .catch(() => console.log('error'))
+                    .catch(() => this.filmCast.push('nd')); 
 
                 };
                 
@@ -93,10 +94,11 @@ function init(){
                             }
                         })
                     .then(data =>{
-                        this.serieCast = data['data']['cast'][0]['name']; 
+                        const actor = data['data']['cast'][0]['name'];
+                        this.serieCast.push(actor);
                         console.log("serie num",i, "actor ",this.serieCast);
                     }) 
-                    .catch(() => console.log('error'));  
+                    .catch(() => this.serieCast.push('nd'));  
                 };
                 
             },
