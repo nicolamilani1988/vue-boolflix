@@ -6,6 +6,10 @@ function init(){
             series: '',
             searchedFilm: '',
             flags:['de','en','it'],
+            filmsId: [],
+            seriesId: [],
+            filmCast: '',
+            serieCast: '',
         },
         methods:{
             getFilms: function(){
@@ -30,7 +34,8 @@ function init(){
                             language ,
                             query
                         }
-                    })    
+                    }),
+
                 ])
                 
                 .then(axios.spread((search1 , search2) => {
@@ -39,9 +44,61 @@ function init(){
                     this.series = search2['data']['results'];
                     console.log(this.films);
                     console.log(this.series);
+                    const myFilmsId = this.getId(this.films, this.filmsId);
+                    const mySeriesId = this.getId(this.series, this.seriesId);
+                    console.log(myFilmsId);
+                    console.log(mySeriesId);
+                    this.getCast(myFilmsId, mySeriesId);
+                    
                                 
                 }))
                 .catch(() => console.log('error'))
+            },
+
+            getId: function(arr, arr2){
+                for (let i = 0;i<arr.length;i++){
+                    const item = arr[i];
+                    arr2.push(item['id']);          
+                }
+                return arr2;
+                // this.filmsId = arr[0]['id'];
+                // console.log(this.filmsId);
+            },
+
+            getCast: function(values1, values2){
+                
+                for(let i = 0; i<values1.length;i++){
+                    const api_key = '08129c0589bf0f473da03e334eb1d88a';
+                    axios.get("https://api.themoviedb.org/3/movie/"+values1[i]+"/credits",
+                        {
+                            params: {
+                                api_key ,
+                            }
+                        })
+                    .then(data =>{
+                        this.filmCast = data['data']['cast'][0]['name']; 
+                        console.log("film num",i, "actor ",this.filmCast);
+                    })
+                    .catch(() => console.log('error'))
+
+                };
+                
+
+                for(let i = 0; i<values2.length;i++){
+                    const api_key = '08129c0589bf0f473da03e334eb1d88a';
+                    axios.get("https://api.themoviedb.org/3/tv/"+values2[i]+"/credits",
+                        {
+                            params: {
+                                api_key ,
+                            }
+                        })
+                    .then(data =>{
+                        this.serieCast = data['data']['cast'][0]['name']; 
+                        console.log("serie num",i, "actor ",this.serieCast);
+                    }) 
+                    .catch(() => console.log('error'));  
+                };
+                
             },
 
             isFlaggable: function(value){
