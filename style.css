@@ -73,7 +73,7 @@ main ul {
 
 .card{
     width: calc(25% - 40px);
-    height: 500px;
+    height: 50vh;
     margin: 20px;
     position: relative;
     background-color: white;
