@@ -5,12 +5,14 @@
     margin: 0;
 }
 
+body{
+    background-color: black;
+}
+
 .container{
     width: 90%;
     margin: auto;
-    padding: 20px 0;
-    border: 1px solid gray;
-    background-color: black;
+    /* height: 100vh; */
 }
 
 ul li{
@@ -23,8 +25,9 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color:black;
-    padding: 10px 20px;
+    padding: 20px 0;
     font-family: 'Bebas Neue', cursive;
+    margin: 0 20px;
     border-bottom: 1px solid white;
 }
 
@@ -68,7 +71,8 @@ main{
 
 main ul {
     display: flex;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    
 }
 
 .card{
@@ -77,6 +81,7 @@ main ul {
     margin: 20px;
     position: relative;
     background-color: white;
+    flex-shrink: 0;
 }
 
 .card.film{
