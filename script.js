@@ -230,7 +230,22 @@ function init(){
             },
 
             showGenreFilm: function(){
-                console.log(this.chosenGenreFilm);
+                this.film = this.film;
+                const selectedGenre = this.filmGenreId[this.chosenGenreFilm];
+                const filteredFilm = [];
+                for(let i = 0;i<this.films.length;i++){
+                    const film = this.films[i]
+                    const filmId = film['genre_ids'];
+                    if(filmId.includes(selectedGenre)){
+                        filteredFilm.push(film);
+                    }
+                    
+                }
+                if(filteredFilm.length>0){
+                    this.films = filteredFilm;
+                }
+
+                
             },
 
             showGenreSerie: function(){
