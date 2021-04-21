@@ -12,19 +12,18 @@ body{
 .container{
     width: 90%;
     margin: auto;
-    /* height: 100vh; */
 }
 
 ul li{
     list-style-type: none;
 }
 
-/* regole header  */
+
+/* regole HEADER  */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color:black;
     padding: 20px 0;
     font-family: 'Bebas Neue', cursive;
     margin: 0 20px;
@@ -47,7 +46,6 @@ header>div:first-child img{
 header>div:last-child{
     padding: 5px;
     background-color: lightgray;
-
 }
 
 header>div:last-child input{
@@ -57,7 +55,7 @@ header>div:last-child input{
 }
 
 header>div:last-child button{
-    padding: 5px;
+    padding: 5px 10px;
     border-radius: 5px;
     background-color: #E50914;
     font-family: 'Bebas Neue', cursive;
@@ -69,13 +67,7 @@ main{
     font-family: 'Roboto', sans-serif;
 }
 
-/* main h2{
-    font-family: 'Bebas Neue', cursive;
-    color: white;
-    margin: 20px 20px 0;
-} */
-
-main ul {
+main ul{
     display: flex;
     overflow-x: auto;
 }
@@ -88,7 +80,8 @@ main ul {
     align-items: center;
     justify-content: space-between;
 }
-.card{
+
+li.card{
     width: calc(25% - 40px);
     height: 50vh;
     margin: 20px;
