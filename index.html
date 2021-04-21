@@ -86,12 +86,12 @@
                                     <span v-for="actor in filmCast">{{actor}}, </span>
                                 </div>
                                 <!-- BONUS GENERE -->
-                                <div @click="getGenreFilm" class="click-view">
+                                <div @click="getGenreFilm(film['id'])" class="click-view">
                                     Clicca per vedere il genere
                                 </div>
                                 <div v-if="isGenreVisible == true">
                                     <strong>Genere: </strong>
-                                    <span>{{film['genre_ids']}}</span>
+                                    <span v-for="genre in filmGenre">{{genre}}, </span>
                                 </div>
                             </div>
     
@@ -149,12 +149,12 @@
                                     <span v-for="actor in serieCast">{{actor}}, </span>
                                 </div>
                                 <!-- BONUS GENERE -->
-                                <div @click="getGenreSerie" class="click-view">
+                                <div @click="getGenreSerie(serie['id'])" class="click-view">
                                     Clicca per vedere il genere
                                 </div>
                                 <div v-if="isGenreVisible == true">
                                     <strong>Genere: </strong>
-                                    <span>{{serie['genre_ids']}}</span>
+                                    <span v-for="genre in serieGenre">{{genre}}, </span>
                                 </div>
                             </div>
                             

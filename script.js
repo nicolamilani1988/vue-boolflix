@@ -10,6 +10,8 @@ function init(){
             filmCast: '',
             serieCast: '',
             isGenreVisible: false,
+            filmGenre: '',
+            serieGenre: '',
             
         },
 
@@ -103,14 +105,45 @@ function init(){
                     .catch(() => console.log('nd')); 
             },
 
-            getGenreFilm: function(){
+            getGenreFilm: function(id){
                 this.isGenreVisible = true;
-                console.log("film");
+                this.filmGenre = '';
+                const api_key = '08129c0589bf0f473da03e334eb1d88a';
+                axios.get("https://api.themoviedb.org/3/movie/"+id,
+                        {
+                            params: {
+                                api_key ,
+                            }
+                        })
+                    .then(data =>{
+                        const genre = data['data']['genres'];
+                        const myGenre = genre.map(elem =>{
+                            return elem['name'];
+                        })
+                        this.filmGenre = myGenre;
+                    })
+                    .catch(() => console.log('nd')); 
+
             },
 
-            getGenreSerie: function(){
+            getGenreSerie: function(id){
                 this.isGenreVisible = true;
-                console.log("serie");
+                this.serieGenre = '';
+                const api_key = '08129c0589bf0f473da03e334eb1d88a';
+                axios.get("https://api.themoviedb.org/3/tv/"+id,
+                        {
+                            params: {
+                                api_key ,
+                            }
+                        })
+                    .then(data =>{
+                        const genre = data['data']['genres'];
+                        const myGenre = genre.map(elem =>{
+                            return elem['name'];
+                        })
+                        this.serieGenre = myGenre;
+                    })
+                    .catch(() => console.log('nd')); 
             },
 
             isFlaggable: function(value){
@@ -152,6 +185,7 @@ function init(){
                 }
             }
         },
+        
     })
 }
 
