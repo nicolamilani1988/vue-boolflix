@@ -3,6 +3,7 @@ function init(){
         el: '#app',
         data:{
             films: '',
+            filteredFilms:'',
             series: '',
             searchedFilm: '',
             flags:['de','en','it'],
@@ -52,6 +53,7 @@ function init(){
                 .then(axios.spread((search1 , search2) => {
 
                     this.films = search1['data']['results'];
+                    this.filteredFilms = search1['data']['results'];
                     this.series = search2['data']['results'];
                     console.log(this.films);
                     console.log(this.series);
@@ -230,7 +232,7 @@ function init(){
             },
 
             showGenreFilm: function(){
-                this.film = this.film;
+                this.filteredFilms = this.film;
                 const selectedGenre = this.filmGenreId[this.chosenGenreFilm];
                 const filteredFilm = [];
                 for(let i = 0;i<this.films.length;i++){
@@ -242,7 +244,9 @@ function init(){
                     
                 }
                 if(filteredFilm.length>0){
-                    this.films = filteredFilm;
+                    this.filteredFilms = filteredFilm;
+                } else {
+                    alert("Genere non trovato");
                 }
 
                 

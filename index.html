@@ -44,7 +44,7 @@
             <main>
 
                 <!-- FILMS -->
-                <section v-if="films.length>0">
+                <section v-if="filteredFilms.length>0">
                     <div class="section-header">
                         <h2>FILM</h2>
                         <div>
@@ -57,7 +57,7 @@
                     </div>
                     
                     <ul>               
-                        <li @mouseleave="hideThings" class="card film" v-for="(film,index) in films">
+                        <li @mouseleave="hideThings" class="card film" v-for="(film,index) in filteredFilms">
                             <!-- parte scritta -->
                             <div class="description">
                                 <!-- titolo -->
