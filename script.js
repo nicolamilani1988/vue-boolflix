@@ -3,9 +3,9 @@ function init(){
         el: '#app',
         data:{
             films: '',
-            filteredFilms:'',
+            activeFilms:'',
             series: '',
-            filteredSeries: '',
+            activeSeries: '',
             searchedFilm: '',
             flags:['de','en','it'],
 
@@ -54,9 +54,9 @@ function init(){
                 .then(axios.spread((search1 , search2) => {
 
                     this.films = search1['data']['results'];
-                    this.filteredFilms = search1['data']['results'];
+                    this.activeFilms = search1['data']['results'];
                     this.series = search2['data']['results'];
-                    this.filteredSeries = search2['data']['results'];
+                    this.activeSeries = search2['data']['results'];
                     console.log(this.films);
                     console.log(this.series);
                     
@@ -234,7 +234,7 @@ function init(){
             },
 
             showGenreFilm: function(){
-                this.filteredFilms = this.films;
+                this.activeFilms = this.films;
                 const selectedGenre = this.filmGenreId[this.chosenGenreFilm];
                 const filteredFilm = [];
                 for(let i = 0;i<this.films.length;i++){
@@ -246,14 +246,16 @@ function init(){
                     
                 }
                 if(filteredFilm.length>0){
-                    this.filteredFilms = filteredFilm;
+                    this.activeFilms = filteredFilm;
+                } else if(this.chosenGenreFilm == ''){
+                    this.activeFilms = this.films;
                 } else {
                     alert("Genere non trovato");
-                }  
+                }
             },
 
             showGenreSerie: function(){
-                this.filteredSeries = this.series;
+                this.activeSeries = this.series;
                 const selectedGenre = this.serieGenreId[this.chosenGenreSerie];
                 const filteredSerie = [];
                 for(let i = 0;i<this.series.length;i++){
@@ -265,7 +267,9 @@ function init(){
                     
                 }
                 if(filteredSerie.length>0){
-                    this.filteredSeries = filteredSerie;
+                    this.activeSeries = filteredSerie;
+                } else if(this.chosenGenreSerie == ''){
+                    this.activeSeries = this.series;
                 } else {
                     alert("Genere non trovato");
                 }

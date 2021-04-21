@@ -5,28 +5,30 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>BoolFlix</title>
-                <!-- font awesome --> 
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-                <!-- google font -->
-                <link rel="preconnect" href="https://fonts.gstatic.com">
-                <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-                <link rel="preconnect" href="https://fonts.gstatic.com">
-                <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-                <!-- jquery -->
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                <!-- VueJS -->
-                <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-                <!-- VueAxios -->
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-                <!-- my css -->
-                <link rel="stylesheet" href="style.css">
-                <!-- my script -->
-                <script src="script.js"></script>
+        <!-- icona -->
+        <link rel="icon" type="image/png" href="./img/icon.png"/>
+        <!-- font awesome --> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <!-- google font -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <!-- jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- VueJS -->
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <!-- VueAxios -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+        <!-- my css -->
+        <link rel="stylesheet" href="style.css">
+        <!-- my script -->
+        <script src="script.js"></script>
     </head>
+
     <body>
 
         <div class="container" id="app">
-
             <!-- logo + searchbar -->
             <header>
                 <div>
@@ -35,29 +37,29 @@
                 </div>
                 <div>
                     <i class="fas fa-search"></i>
-                    <input v-model="searchedFilm" type="text" placeholder="Inserisci titolo film">
+                    <input v-model="searchedFilm" type="text" placeholder="Inserisci titolo film" @keyup.enter="getFilms">
                     <button @click="getFilms">Cerca film</button>
                 </div>             
             </header>
 
             <!-- card visualizzazione risposte -->
             <main>
-
                 <!-- FILMS -->
-                <section v-if="filteredFilms.length>0">
+                <section v-if="activeFilms.length>0">
+                    <!-- titolo + filtro per generi -->
                     <div class="section-header">
                         <h2>FILM</h2>
                         <div>
                             <label for="genre-filter">Filtra per genere</label>
-                            <select name="genre-filter" id="" @change="showGenreFilm" v-model="chosenGenreFilm">
+                            <select name="genre-filter" @change="showGenreFilm" v-model="chosenGenreFilm">
                                 <option value="">Tutti i generi</option>
                                 <option v-for="(genre,index) in filmGenreList" :value="index">{{genre}}</option>
                             </select>
                         </div>
                     </div>
-                    
+                    <!-- risultati ricerca -->
                     <ul>               
-                        <li @mouseleave="hideThings" class="card film" v-for="(film,index) in filteredFilms">
+                        <li @mouseleave="hideThings" class="card film" v-for="(film,index) in activeFilms">
                             <!-- parte scritta -->
                             <div class="description">
                                 <!-- titolo -->
@@ -102,13 +104,14 @@
                                     <strong>Genere: </strong>
                                     <span v-for="genre in filmGenre">{{genre}}, </span>
                                 </div>
+
                             </div>
     
                             <!-- sfondo -->
                             <div class="poster">
                                 <img :src="getPoster(film)" alt="">
                             </div>
-    
+
                         </li>
                     </ul>
                     
@@ -116,7 +119,8 @@
                 
                 
                 <!-- SERIE TV -->
-                <section v-if="filteredSeries.length>0">
+                <section v-if="activeSeries.length>0">
+                    <!-- titolo + filtro per generi -->
                     <div class="section-header">
                         <h2>SERIE TV</h2>
                         <div>
@@ -127,9 +131,9 @@
                             </select>
                         </div>
                     </div>
-
+                    <!-- risultati ricerca -->
                     <ul>
-                        <li @mouseleave="hideThings" class="card serie"  v-for="(serie,index) in filteredSeries">
+                        <li @mouseleave="hideThings" class="card serie"  v-for="(serie,index) in activeSeries">
                             <!-- parte scritta -->
                             <div class="description">
                                 <!-- titolo -->
@@ -174,6 +178,7 @@
                                     <strong>Genere: </strong>
                                     <span v-for="genre in serieGenre">{{genre}}, </span>
                                 </div>
+
                             </div>
                             
                             <!-- sfondo -->
@@ -192,4 +197,5 @@
 
         
     </body>
+    
 </html>
