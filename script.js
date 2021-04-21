@@ -6,6 +6,7 @@ function init(){
             series: '',
             searchedFilm: '',
             flags:['de','en','it'],
+
             isCastVisible: false,
             filmCast: '',
             serieCast: '',
@@ -15,7 +16,10 @@ function init(){
             
             filmGenreList: '',
             serieGenreList: '',
-            
+            filmGenreId : '',
+            serieGenreId : '',
+            chosenGenreFilm:'',
+            chosenGenreSerie:'',
         },
 
         methods:{
@@ -119,7 +123,7 @@ function init(){
                         })
                     .then(data =>{
                         const genre = data['data']['genres'];
-                        this.filmGenre = this.getGenre(genre);
+                        this.filmGenre = this.getGenre(genre,'name');
                     })
                     .catch(() => console.log('nd')); 
             },
@@ -136,14 +140,14 @@ function init(){
                         })
                     .then(data =>{
                         const genre = data['data']['genres'];
-                        this.serieGenre = this.getGenre(genre);
+                        this.serieGenre = this.getGenre(genre,'name');
                     })
                     .catch(() => console.log('nd')); 
             },
 
-            getGenre: function(values){
+            getGenre: function(values,type){
                 const myGenre = values.map(elem =>{
-                    return elem['name'];
+                    return elem[type];
                 })
                 return myGenre;
             },
@@ -197,9 +201,11 @@ function init(){
                 })
             .then(data =>{
                 const allGenres = data['data']['genres'];
-                const genresList = (this.getGenre(allGenres));
+                const genresList = (this.getGenre(allGenres,'name'));
                 this.filmGenreList = genresList;
-                console.log(this.filmGenreList);
+                const idList = (this.getGenre(allGenres,'id'));
+                this.filmGenreId = idList;
+                console.log(this.filmGenreId);
             })
             .catch(() => console.log('nd')); 
             },
@@ -214,11 +220,21 @@ function init(){
                 })
             .then(data =>{
                 const allGenres = data['data']['genres'];
-                const genresList = (this.getGenre(allGenres));
+                const genresList = (this.getGenre(allGenres,'name'));
                 this.serieGenreList = genresList;
-                console.log(this.serieGenreList);
+                const idList = (this.getGenre(allGenres,'id'));
+                this.serieGenreId = idList;
+                console.log(this.serieGenreId);
             })
             .catch(() => console.log('nd')); 
+            },
+
+            showGenreFilm: function(){
+                console.log(this.chosenGenreFilm);
+            },
+
+            showGenreSerie: function(){
+                console.log(this.chosenGenreSerie);
             },
         },   
     })
