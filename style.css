@@ -69,18 +69,25 @@ main{
     font-family: 'Roboto', sans-serif;
 }
 
-main h2{
+/* main h2{
     font-family: 'Bebas Neue', cursive;
     color: white;
     margin: 20px 20px 0;
-}
+} */
 
 main ul {
     display: flex;
     overflow-x: auto;
 }
 
-
+.section-header{
+    font-family: 'Bebas Neue', cursive;
+    color: white;
+    margin: 20px 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .card{
     width: calc(25% - 40px);
     height: 50vh;

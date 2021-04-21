@@ -45,8 +45,16 @@
 
                 <!-- FILMS -->
                 <section v-if="films.length>0">
-                    <h2>FILM</h2>
-
+                    <div class="section-header">
+                        <h2>FILM</h2>
+                        <div>
+                            <label for="genre-filter">Filtra per genere</label>
+                            <select name="genre-filter" id="">
+                                <option v-for="genre in filmGenreList" :value="genre.toLowerCase()">{{genre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    
                     <ul>               
                         <li @mouseleave="hideThings" class="card film" v-for="(film,index) in films">
                             <!-- parte scritta -->
@@ -108,7 +116,15 @@
                 
                 <!-- SERIE TV -->
                 <section v-if="series.length>0">
-                    <h2>SERIE TV</h2>
+                    <div class="section-header">
+                        <h2>SERIE TV</h2>
+                        <div>
+                            <label for="genre-filter">Filtra per genere</label>
+                            <select name="genre-filter" id="">
+                                <option v-for="genre in serieGenreList" :value="genre.toLowerCase()">{{genre}}</option>
+                            </select>
+                        </div>
+                    </div>
 
                     <ul>
                         <li @mouseleave="hideThings" class="card serie"  v-for="(serie,index) in series">

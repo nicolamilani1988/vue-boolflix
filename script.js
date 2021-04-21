@@ -13,6 +13,9 @@ function init(){
             filmGenre: '',
             serieGenre: '',
             
+            filmGenreList: '',
+            serieGenreList: '',
+            
         },
 
         methods:{
@@ -48,6 +51,9 @@ function init(){
                     this.series = search2['data']['results'];
                     console.log(this.films);
                     console.log(this.series);
+                    
+                    this.allFilmsGenre();
+                    this.allSeriesGenre();
                 }))
                 .catch(() => console.log('error'))
             },
@@ -179,9 +185,42 @@ function init(){
                 if(vote > (index*2)){
                     return 'fill-yellow';
                 }
-            }
-        },
-        
+            },
+
+            allFilmsGenre: function(){
+                const api_key = '08129c0589bf0f473da03e334eb1d88a';
+                axios.get("https://api.themoviedb.org/3/genre/movie/list",
+                {
+                    params: {
+                        api_key ,
+                    }
+                })
+            .then(data =>{
+                const allGenres = data['data']['genres'];
+                const genresList = (this.getGenre(allGenres));
+                this.filmGenreList = genresList;
+                console.log(this.filmGenreList);
+            })
+            .catch(() => console.log('nd')); 
+            },
+
+            allSeriesGenre: function(){
+                const api_key = '08129c0589bf0f473da03e334eb1d88a';
+                axios.get("https://api.themoviedb.org/3/genre/tv/list",
+                {
+                    params: {
+                        api_key ,
+                    }
+                })
+            .then(data =>{
+                const allGenres = data['data']['genres'];
+                const genresList = (this.getGenre(allGenres));
+                this.serieGenreList = genresList;
+                console.log(this.serieGenreList);
+            })
+            .catch(() => console.log('nd')); 
+            },
+        },   
     })
 }
 
