@@ -79,12 +79,12 @@
                                     <span>{{film['overview']}}</span>
                                 </div>
                                 <!-- BONUS CAST -->
-                                <div @click="getActorFilm(film['id'])" class="click-view">
+                                <div @click="getActorFilm(film['id'])" class="click-view" >
                                     Clicca per vedere il cast
                                 </div>
                                 <div v-if="isCastVisible == true">
-                                    <strong @click="getActorFilm(film['id'])">Cast: </strong>
-                                    <span>{{filmCast}}</span>
+                                    <strong>Cast: </strong>
+                                    <span v-for="actor in filmCast">{{actor}}, </span>
                                 </div>
                             </div>
     
@@ -139,8 +139,8 @@
                                     Clicca per vedere il cast
                                 </div>
                                 <div v-if="isCastVisible == true">
-                                    <strong @click="getActorSerie(serie['id'])" >Cast: </strong>
-                                    <span>{{serieCast}}</span>
+                                    <strong>Cast: </strong>
+                                    <span v-for="actor in serieCast">{{actor}}, </span>
                                 </div>
                             </div>
                             

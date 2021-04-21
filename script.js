@@ -59,12 +59,17 @@ function init(){
                             }
                         })
                     .then(data =>{
-                        const actor = data['data']['cast'][0]['name'];
-                        console.log(actor);
-                        this.filmCast = actor;
-                        
+                        const cast = data['data']['cast'];
+                        const myCast = [];
+                        cast.forEach((elem,index)=>{
+                            if(index<5){
+                                myCast.push(elem['name']);
+                            }
+                        })
+                        console.log(myCast); 
+                        this.filmCast = myCast;
                     })
-                    .catch(() =>  'nd'); 
+                    .catch(() =>  console.log('nd')); 
             },
 
             getActorSerie: function(id){
@@ -78,13 +83,17 @@ function init(){
                             }
                         })
                     .then(data =>{
-                        const actor = data['data']['cast'][0]['name'];
-                        console.log(actor);
-                        this.serieCast = actor;
-
-                        
+                        const cast = data['data']['cast'];
+                        const myCast = [];
+                        cast.forEach((elem,index)=>{
+                            if(index<5){
+                                myCast.push(elem['name']);
+                            }
+                        })
+                        console.log(myCast); 
+                        this.serieCast = myCast;
                     })
-                    .catch(() =>  'nd'); 
+                    .catch(() => console.log('nd')); 
             },
 
             isFlaggable: function(value){
