@@ -116,7 +116,7 @@
                 
                 
                 <!-- SERIE TV -->
-                <section v-if="series.length>0">
+                <section v-if="filteredSeries.length>0">
                     <div class="section-header">
                         <h2>SERIE TV</h2>
                         <div>
@@ -129,7 +129,7 @@
                     </div>
 
                     <ul>
-                        <li @mouseleave="hideThings" class="card serie"  v-for="(serie,index) in series">
+                        <li @mouseleave="hideThings" class="card serie"  v-for="(serie,index) in filteredSeries">
                             <!-- parte scritta -->
                             <div class="description">
                                 <!-- titolo -->

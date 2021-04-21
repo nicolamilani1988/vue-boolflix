@@ -5,6 +5,7 @@ function init(){
             films: '',
             filteredFilms:'',
             series: '',
+            filteredSeries: '',
             searchedFilm: '',
             flags:['de','en','it'],
 
@@ -55,6 +56,7 @@ function init(){
                     this.films = search1['data']['results'];
                     this.filteredFilms = search1['data']['results'];
                     this.series = search2['data']['results'];
+                    this.filteredSeries = search2['data']['results'];
                     console.log(this.films);
                     console.log(this.series);
                     
@@ -232,7 +234,7 @@ function init(){
             },
 
             showGenreFilm: function(){
-                this.filteredFilms = this.film;
+                this.filteredFilms = this.films;
                 const selectedGenre = this.filmGenreId[this.chosenGenreFilm];
                 const filteredFilm = [];
                 for(let i = 0;i<this.films.length;i++){
@@ -247,13 +249,26 @@ function init(){
                     this.filteredFilms = filteredFilm;
                 } else {
                     alert("Genere non trovato");
-                }
-
-                
+                }  
             },
 
             showGenreSerie: function(){
-                console.log(this.chosenGenreSerie);
+                this.filteredSeries = this.series;
+                const selectedGenre = this.serieGenreId[this.chosenGenreSerie];
+                const filteredSerie = [];
+                for(let i = 0;i<this.series.length;i++){
+                    const serie = this.series[i]
+                    const serieId = serie['genre_ids'];
+                    if(serieId.includes(selectedGenre)){
+                        filteredSerie.push(serie);
+                    }
+                    
+                }
+                if(filteredSerie.length>0){
+                    this.filteredSeries = filteredSerie;
+                } else {
+                    alert("Genere non trovato");
+                }
             },
         },   
     })
