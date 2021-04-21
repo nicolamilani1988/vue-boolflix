@@ -48,7 +48,7 @@
                     <h2>FILM</h2>
 
                     <ul>               
-                        <li @mouseleave="isCastVisible = false" class="card film" v-for="(film,index) in films">
+                        <li @mouseleave="hideThings" class="card film" v-for="(film,index) in films">
                             <!-- parte scritta -->
                             <div class="description">
                                 <!-- titolo -->
@@ -68,7 +68,6 @@
                                     <img v-else class="flag-icon" :src="getFlag(film)" alt="">
                                 </div>
                                 <!-- voto -->
-                                <!-- <div>{{getVote(film)}}</div> -->
                                 <div class="star-rating">
                                     <strong>Voto: </strong>
                                     <i :class="fillStar(film,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
@@ -85,6 +84,14 @@
                                 <div v-if="isCastVisible == true">
                                     <strong>Cast: </strong>
                                     <span v-for="actor in filmCast">{{actor}}, </span>
+                                </div>
+                                <!-- BONUS GENERE -->
+                                <div @click="getGenreFilm" class="click-view">
+                                    Clicca per vedere il genere
+                                </div>
+                                <div v-if="isGenreVisible == true">
+                                    <strong>Genere: </strong>
+                                    <span>{{film['genre_ids']}}</span>
                                 </div>
                             </div>
     
@@ -104,7 +111,7 @@
                     <h2>SERIE TV</h2>
 
                     <ul>
-                        <li @mouseleave="isCastVisible = false"  class="card serie"  v-for="(serie,index) in series">
+                        <li @mouseleave="hideThings" class="card serie"  v-for="(serie,index) in series">
                             <!-- parte scritta -->
                             <div class="description">
                                 <!-- titolo -->
@@ -124,7 +131,6 @@
                                     <img v-else class="flag-icon" :src="getFlag(serie)" alt="">
                                 </div>
                                 <!-- voto -->
-                                <!-- <div>{{getVote(serie)}}</div> -->
                                 <div class="star-rating">
                                     <strong>Voto: </strong>
                                     <i :class="fillStar(serie,index)" class="fas fa-star" v-for="(elem,index) in 5"></i>
@@ -141,6 +147,14 @@
                                 <div v-if="isCastVisible == true">
                                     <strong>Cast: </strong>
                                     <span v-for="actor in serieCast">{{actor}}, </span>
+                                </div>
+                                <!-- BONUS GENERE -->
+                                <div @click="getGenreSerie" class="click-view">
+                                    Clicca per vedere il genere
+                                </div>
+                                <div v-if="isGenreVisible == true">
+                                    <strong>Genere: </strong>
+                                    <span>{{serie['genre_ids']}}</span>
                                 </div>
                             </div>
                             

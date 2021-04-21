@@ -6,9 +6,11 @@ function init(){
             series: '',
             searchedFilm: '',
             flags:['de','en','it'],
+            isCastVisible: false,
             filmCast: '',
             serieCast: '',
-            isCastVisible: false,
+            isGenreVisible: false,
+            
         },
 
         methods:{
@@ -46,6 +48,11 @@ function init(){
                     console.log(this.series);
                 }))
                 .catch(() => console.log('error'))
+            },
+
+            hideThings: function(){
+                this.isCastVisible = false; 
+                this.isGenreVisible = false; 
             },
 
             getActorFilm: function(id){
@@ -94,6 +101,16 @@ function init(){
                         this.serieCast = myCast;
                     })
                     .catch(() => console.log('nd')); 
+            },
+
+            getGenreFilm: function(){
+                this.isGenreVisible = true;
+                console.log("film");
+            },
+
+            getGenreSerie: function(){
+                this.isGenreVisible = true;
+                console.log("serie");
             },
 
             isFlaggable: function(value){
