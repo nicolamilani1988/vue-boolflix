@@ -69,14 +69,7 @@ function init(){
                         })
                     .then(data =>{
                         const cast = data['data']['cast'];
-                        const myCast = [];
-                        cast.forEach((elem,index)=>{
-                            if(index<5){
-                                myCast.push(elem['name']);
-                            }
-                        })
-                        console.log(myCast); 
-                        this.filmCast = myCast;
+                        this.filmCast = this.getActor(cast);
                     })
                     .catch(() =>  console.log('nd')); 
             },
@@ -93,16 +86,19 @@ function init(){
                         })
                     .then(data =>{
                         const cast = data['data']['cast'];
-                        const myCast = [];
-                        cast.forEach((elem,index)=>{
-                            if(index<5){
-                                myCast.push(elem['name']);
-                            }
-                        })
-                        console.log(myCast); 
-                        this.serieCast = myCast;
+                        this.serieCast = this.getActor(cast);
                     })
                     .catch(() => console.log('nd')); 
+            },
+
+            getActor:function(values){
+                const myCast = [];
+                values.forEach((elem,index)=>{
+                    if(index<5){
+                        myCast.push(elem['name']);
+                    }
+                });
+                return myCast;
             },
 
             getGenreFilm: function(id){
@@ -117,13 +113,9 @@ function init(){
                         })
                     .then(data =>{
                         const genre = data['data']['genres'];
-                        const myGenre = genre.map(elem =>{
-                            return elem['name'];
-                        })
-                        this.filmGenre = myGenre;
+                        this.filmGenre = this.getGenre(genre);
                     })
                     .catch(() => console.log('nd')); 
-
             },
 
             getGenreSerie: function(id){
@@ -138,12 +130,16 @@ function init(){
                         })
                     .then(data =>{
                         const genre = data['data']['genres'];
-                        const myGenre = genre.map(elem =>{
-                            return elem['name'];
-                        })
-                        this.serieGenre = myGenre;
+                        this.serieGenre = this.getGenre(genre);
                     })
                     .catch(() => console.log('nd')); 
+            },
+
+            getGenre: function(values){
+                const myGenre = values.map(elem =>{
+                    return elem['name'];
+                })
+                return myGenre;
             },
 
             isFlaggable: function(value){
