@@ -48,7 +48,7 @@
                     <h2>FILM</h2>
 
                     <ul>               
-                        <li class="card film" v-for="(film,index) in films">
+                        <li @mouseleave="isCastVisible = false" class="card film" v-for="(film,index) in films">
                             <!-- parte scritta -->
                             <div class="description">
                                 <!-- titolo -->
@@ -79,9 +79,12 @@
                                     <span>{{film['overview']}}</span>
                                 </div>
                                 <!-- BONUS CAST -->
-                                <div>
-                                    <strong>Cast: </strong>
-                                    <span>{{filmCast[index]}}</span>
+                                <div @click="getActorFilm(film['id'])" class="click-view">
+                                    Clicca per vedere il cast
+                                </div>
+                                <div v-if="isCastVisible == true">
+                                    <strong @click="getActorFilm(film['id'])">Cast: </strong>
+                                    <span>{{filmCast}}</span>
                                 </div>
                             </div>
     
@@ -101,7 +104,7 @@
                     <h2>SERIE TV</h2>
 
                     <ul>
-                        <li class="card serie"  v-for="(serie,index) in series">
+                        <li @mouseleave="isCastVisible = false"  class="card serie"  v-for="(serie,index) in series">
                             <!-- parte scritta -->
                             <div class="description">
                                 <!-- titolo -->
@@ -132,9 +135,12 @@
                                     <span>{{serie['overview']}}</span>
                                 </div>
                                 <!-- BONUS CAST -->
-                                <div>
-                                    <strong>Cast: </strong>
-                                    <span>{{serieCast[index]}}</span>
+                                <div @click="getActorSerie(serie['id'])" class="click-view">
+                                    Clicca per vedere il cast
+                                </div>
+                                <div v-if="isCastVisible == true">
+                                    <strong @click="getActorSerie(serie['id'])" >Cast: </strong>
+                                    <span>{{serieCast}}</span>
                                 </div>
                             </div>
                             

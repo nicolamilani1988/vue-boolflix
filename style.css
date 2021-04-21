@@ -122,7 +122,10 @@ i.fill-yellow{
     color: orange;
 }
 /* BONUS CAST */
-
+.click-view{
+    cursor: pointer;
+    color: blue;
+}
 /* immagine card */
 .poster{
     width:100%;

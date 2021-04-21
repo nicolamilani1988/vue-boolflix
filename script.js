@@ -6,21 +6,16 @@ function init(){
             series: '',
             searchedFilm: '',
             flags:['de','en','it'],
-            filmsId: [],
-            seriesId: [],
-            filmCast: [],
-            serieCast: [],
+            filmCast: '',
+            serieCast: '',
+            isCastVisible: false,
         },
+
         methods:{
             getFilms: function(){
                 const api_key = '08129c0589bf0f473da03e334eb1d88a';
                 const query = this.searchedFilm;
                 const language = 'it';
-                this.filmsId= [],
-                this.seriesId= [],
-                this.filmCast = [],
-                this.serieCast = [],
-
 
                 axios.all([
                     axios.get('https://api.themoviedb.org/3/search/movie',
@@ -49,32 +44,34 @@ function init(){
                     this.series = search2['data']['results'];
                     console.log(this.films);
                     console.log(this.series);
-                    const myFilmsId = this.getId(this.films, this.filmsId);
-                    const mySeriesId = this.getId(this.series, this.seriesId);
-                    console.log(myFilmsId);
-                    console.log(mySeriesId);
-                    this.getCast(myFilmsId, mySeriesId);
-                    
-                                
                 }))
                 .catch(() => console.log('error'))
             },
 
-            getId: function(arr, arr2){
-                for (let i = 0;i<arr.length;i++){
-                    const item = arr[i];
-                    arr2.push(item['id']);          
-                }
-                return arr2;
-                // this.filmsId = arr[0]['id'];
-                // console.log(this.filmsId);
+            getActorFilm: function(id){
+                this.isCastVisible = true;
+                this.filmCast = '';
+                const api_key = '08129c0589bf0f473da03e334eb1d88a';
+                axios.get("https://api.themoviedb.org/3/movie/"+id+"/credits",
+                        {
+                            params: {
+                                api_key ,
+                            }
+                        })
+                    .then(data =>{
+                        const actor = data['data']['cast'][0]['name'];
+                        console.log(actor);
+                        this.filmCast = actor;
+                        
+                    })
+                    .catch(() =>  'nd'); 
             },
 
-            getCast: function(values1, values2){
-                
-                for(let i = 0; i<values1.length;i++){
-                    const api_key = '08129c0589bf0f473da03e334eb1d88a';
-                    axios.get("https://api.themoviedb.org/3/movie/"+values1[i]+"/credits",
+            getActorSerie: function(id){
+                this.isCastVisible = true;
+                this.serieCast = '';
+                const api_key = '08129c0589bf0f473da03e334eb1d88a';
+                axios.get("https://api.themoviedb.org/3/tv/"+id+"/credits",
                         {
                             params: {
                                 api_key ,
@@ -82,30 +79,12 @@ function init(){
                         })
                     .then(data =>{
                         const actor = data['data']['cast'][0]['name'];
-                        this.filmCast.push(actor); 
-                        console.log("film num",i, "actor ",this.filmCast);
+                        console.log(actor);
+                        this.serieCast = actor;
+
+                        
                     })
-                    .catch(() => this.filmCast.push('nd')); 
-
-                };
-                
-
-                for(let i = 0; i<values2.length;i++){
-                    const api_key = '08129c0589bf0f473da03e334eb1d88a';
-                    axios.get("https://api.themoviedb.org/3/tv/"+values2[i]+"/credits",
-                        {
-                            params: {
-                                api_key ,
-                            }
-                        })
-                    .then(data =>{
-                        const actor = data['data']['cast'][0]['name'];
-                        this.serieCast.push(actor);
-                        console.log("serie num",i, "actor ",this.serieCast);
-                    }) 
-                    .catch(() => this.serieCast.push('nd'));  
-                };
-                
+                    .catch(() =>  'nd'); 
             },
 
             isFlaggable: function(value){
