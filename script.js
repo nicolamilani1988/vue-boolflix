@@ -18,8 +18,8 @@ function init(){
             
             filmGenreList: '', // lista di tutti i generi film
             serieGenreList: '', // lista di tutti i generi serie
-            filmGenreId : '', //lista di tutti id genere film
-            serieGenreId : '', //lista di tutti id genere serie
+            filmGenreId : '', //lista di tutti id+nome genere film
+            serieGenreId : '', //lista di tutti id+nome genere serie
             chosenGenreFilm:'', // genere film selezionato
             chosenGenreSerie:'', // genere serie selezionato
         },
@@ -186,12 +186,20 @@ function init(){
 
             showGenreFilm: function(){ // mostro solo generi selezionati film
                 this.activeFilms = this.films;
-                const selectedGenre = this.filmGenreId[this.chosenGenreFilm];
-                const filteredFilm = [];
+                const selectedName = this.chosenGenreFilm;
+                let selectedId;
+                for(let i=0;i<this.filmGenreId.length;i++){
+                    const genreTot = this.filmGenreId[i];
+                    if(genreTot['name'] == selectedName){
+                        selectedId = genreTot['id'];   
+                    }           
+                } 
+                console.log(selectedId); //id corrisp al name
+                let filteredFilm = [];
                 for(let i = 0;i<this.films.length;i++){
                     const film = this.films[i]
                     const filmId = film['genre_ids'];
-                    if(filmId.includes(selectedGenre)){
+                    if(filmId.includes(selectedId)){
                         filteredFilm.push(film);
                     }        
                 }
@@ -207,14 +215,22 @@ function init(){
 
             showGenreSerie: function(){ //mostro solo generi selezionati film
                 this.activeSeries = this.series;
-                const selectedGenre = this.serieGenreId[this.chosenGenreSerie];
-                const filteredSerie = [];
+                const selectedName = this.chosenGenreSerie;
+                let selectedId;
+                for(let i=0;i<this.serieGenreId.length;i++){
+                    const genreTot = this.serieGenreId[i];
+                    if(genreTot['name'] == selectedName){
+                        selectedId = genreTot['id'];   
+                    }           
+                } 
+                console.log(selectedId); //id corrisp al name
+                let filteredSerie = [];
                 for(let i = 0;i<this.series.length;i++){
                     const serie = this.series[i]
                     const serieId = serie['genre_ids'];
-                    if(serieId.includes(selectedGenre)){
+                    if(serieId.includes(selectedId)){
                         filteredSerie.push(serie);
-                    }                 
+                    }        
                 }
 
                 if(filteredSerie.length>0){
@@ -240,8 +256,8 @@ function init(){
                     const allGenres = data['data']['genres'];
                     const genresList = (this.getGenre(allGenres,'name'));
                     this.filmGenreList = genresList;
-                    const idList = (this.getGenre(allGenres,'id'));
-                    this.filmGenreId = idList;
+                   // const idList = (this.getGenre(allGenres,'id'));
+                    this.filmGenreId = allGenres;
                     console.log(this.filmGenreId);
                 })
                 .catch(() => console.log('nd')); 
@@ -256,8 +272,8 @@ function init(){
                     const allGenres = data['data']['genres'];
                     const genresList = (this.getGenre(allGenres,'name'));
                     this.serieGenreList = genresList;
-                    const idList = (this.getGenre(allGenres,'id'));
-                    this.serieGenreId = idList;
+                    //const idList = (this.getGenre(allGenres,'id'));
+                    this.serieGenreId = allGenres;
                     console.log(this.serieGenreId);
                 })
                 .catch(() => console.log('nd'));       

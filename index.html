@@ -53,7 +53,7 @@
                             <label for="genre-filter">Filtra per genere</label>
                             <select name="genre-filter" @change="showGenreFilm" v-model="chosenGenreFilm">
                                 <option value="">Tutti i generi</option>
-                                <option v-for="(genre,index) in filmGenreList" :value="index">{{genre}}</option>
+                                <option v-for="genre in filmGenreList" :value="genre">{{genre}}</option>
                             </select>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                             <label for="genre-filter">Filtra per genere</label>
                             <select name="genre-filter" id="" @change="showGenreSerie" v-model="chosenGenreSerie">
                                 <option value="">Tutti i generi</option>
-                                <option v-for="(genre,index) in serieGenreList" :value="index">{{genre}}</option>
+                                <option v-for="genre in serieGenreList" :value="genre">{{genre}}</option>
                             </select>
                         </div>
                     </div>
