@@ -2,30 +2,30 @@ function init(){
     new Vue({
         el: '#app',
         data:{
-            films: '',
-            activeFilms:'',
-            series: '',
-            activeSeries: '',
-            searchedFilm: '',
-            flags:['de','en','it'],
+            films: '', //ottengo film
+            activeFilms:'', //ottengo film parziali
+            series: '', //ottengo serie
+            activeSeries: '', //ottengo serie parziali
+            searchedFilm: '', // parametro di ricerca
+            flags:['de','en','it'], // icone-linguaggio disponibili
 
-            isCastVisible: false,
-            filmCast: '',
-            serieCast: '',
-            isGenreVisible: false,
-            filmGenre: '',
-            serieGenre: '',
+            isCastVisible: false, //mostra cast
+            filmCast: '', // array film cast['name']
+            serieCast: '', // array serie cast['name']
+            isGenreVisible: false, // mostra genere
+            filmGenre: '', // array film genre['name']
+            serieGenre: '', // array serie genre['name']
             
-            filmGenreList: '',
-            serieGenreList: '',
-            filmGenreId : '',
-            serieGenreId : '',
-            chosenGenreFilm:'',
-            chosenGenreSerie:'',
+            filmGenreList: '', // lista di tutti i generi film
+            serieGenreList: '', // lista di tutti i generi serie
+            filmGenreId : '', //lista di tutti id genere film
+            serieGenreId : '', //lista di tutti id genere serie
+            chosenGenreFilm:'', // genere film selezionato
+            chosenGenreSerie:'', // genere serie selezionato
         },
 
         methods:{
-            getFilms: function(){
+            getFilms: function(){ // ottengo film ricercati
                 const api_key = '08129c0589bf0f473da03e334eb1d88a';
                 const query = this.searchedFilm;
                 const language = 'it';
@@ -57,8 +57,6 @@ function init(){
                     this.activeFilms = search1['data']['results'];
                     this.series = search2['data']['results'];
                     this.activeSeries = search2['data']['results'];
-                    console.log(this.films);
-                    console.log(this.series);
                     
                     this.allFilmsGenre();
                     this.allSeriesGenre();
@@ -72,7 +70,7 @@ function init(){
             },
 
             getActorFilm: function(id){
-                this.isCastVisible = true;
+                this.isCastVisible = !this.isCastVisible;
                 this.filmCast = '';
                 const api_key = '08129c0589bf0f473da03e334eb1d88a';
                 axios.get("https://api.themoviedb.org/3/movie/"+id+"/credits",
@@ -89,7 +87,7 @@ function init(){
             },
 
             getActorSerie: function(id){
-                this.isCastVisible = true;
+                this.isCastVisible = !this.isCastVisible;
                 this.serieCast = '';
                 const api_key = '08129c0589bf0f473da03e334eb1d88a';
                 axios.get("https://api.themoviedb.org/3/tv/"+id+"/credits",
@@ -116,7 +114,7 @@ function init(){
             },
 
             getGenreFilm: function(id){
-                this.isGenreVisible = true;
+                this.isGenreVisible = !this.isGenreVisible;
                 this.filmGenre = '';
                 const api_key = '08129c0589bf0f473da03e334eb1d88a';
                 axios.get("https://api.themoviedb.org/3/movie/"+id,
